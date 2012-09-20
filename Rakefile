@@ -1,13 +1,11 @@
-require 'rubygems'
-require 'bundler'
-
-Bundler.require
-
-require './app'
+desc "Loads the app environment"
+task :env do
+  require "./app"
+end
 
 namespace :assets do
   desc 'Precompile stylesheets and javascripts'
-  task :precompile do
+  task :precompile => [:env]  do
     sprockets = App.settings.sprockets
     
     {"javascripts" => "js", "stylesheets" => "css"}.each do |folder, extension|

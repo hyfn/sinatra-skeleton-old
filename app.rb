@@ -1,6 +1,9 @@
+require "rubygems"
+require "bundler"
+Bundler.require
+
 DataMapper::Logger.new(STDOUT, :debug)
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/app_development")
-
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |model| require model }
 
 require './helpers'
