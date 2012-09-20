@@ -20,8 +20,17 @@ class App < Sinatra::Base
   set :assets_path, File.join(root, 'assets')
 
   configure do
-    sprockets.append_path File.join(root, 'assets', 'stylesheets')
-    sprockets.append_path File.join(root, 'assets', 'javascripts')
+    # look for gems in asset folders
+    %w{javascripts stylesheets images}.each do |subdir|
+      sprockets.append_path File.join(root, 'assets', subdir)
+      %w{vendor lib app}.each do |base_dir|  
+        # load for all gems
+        Gem.loaded_specs.map(&:last).each do |gemspec|
+          path = File.join(gemspec.gem_dir, base_dir, "assets", subdir)
+          sprockets.append_path path if File.directory? path
+        end
+      end
+    end
   end
 
   configure :development do

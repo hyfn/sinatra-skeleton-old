@@ -23,6 +23,7 @@ gem "thin"
 gem "sprockets", "~> 2.3.2"
 gem "coffee-script", "~> 2.2.0"
 gem "sass"
+gem "coffee-filter"
 
 # Use HAML instead of ERB; its faster
 # gem "haml"
