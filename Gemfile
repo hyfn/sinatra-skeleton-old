@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "sinatra"
+gem "sinatra", :require => "sinatra/base"
 gem "sinatra-contrib"
 
 # Automated tasks
