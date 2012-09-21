@@ -9,6 +9,7 @@ Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |model| require model }
 require './helpers'
 
 class App < Sinatra::Base
+  register Sinatra::Contrib
   # If you run into issues with click-jacking (like with Facebook
   # Canvas apps), or with CSRF issues, you may want to disable
   # sinatra-contrib's default protection:
@@ -32,11 +33,12 @@ class App < Sinatra::Base
       end
     end
   end
-
+  
   configure :development do
     register Sinatra::Reloader
+    also_reload "./**.rb"
   end
-
+  
   helpers Sinatra::AssetHelpers
 
   get "/" do
