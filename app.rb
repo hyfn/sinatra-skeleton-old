@@ -42,7 +42,7 @@ class App < Sinatra::Base
   helpers Sinatra::AssetHelpers
 
   get "/" do
-    # ...
+    haml :index
   end
 end
 
